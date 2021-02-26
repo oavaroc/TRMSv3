@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.trms.delegates.FrontControllerDelegate;
+
 //import com.revature.controller.RequestHandler;
 //import com.revature.delegates.FrontControllerDelegate;
 
 public class FrontController extends HttpServlet {
-	/*
 	private RequestHandler rh = new RequestHandler();
 	
 	// this method is where we will funnel all of our requests
@@ -52,5 +53,4 @@ public class FrontController extends HttpServlet {
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
 	}
-	*/
 }

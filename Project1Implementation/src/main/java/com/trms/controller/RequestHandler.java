@@ -8,22 +8,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.trms.delegates.EmployeeDelegate;
+import com.trms.delegates.FrontControllerDelegate;
+import com.trms.delegates.LoginDelegate;
+
 //import com.revature.delegates.CatDelegate;
 //import com.revature.delegates.EmployeeDelegate;
 //import com.revature.delegates.FrontControllerDelegate;
 //import com.revature.delegates.LoginDelegate;
 
 public class RequestHandler {
-	/*
-	 * 
 	private Map<String, FrontControllerDelegate> delegateMap;
 	
 	{
 		delegateMap = new HashMap<String, FrontControllerDelegate>();
 		
-		delegateMap.put("cat", new CatDelegate());
-		delegateMap.put("user", new LoginDelegate());
 		delegateMap.put("employee", new EmployeeDelegate());
+		delegateMap.put("login", new LoginDelegate());
 	}
 	
 	public FrontControllerDelegate handle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,6 +50,6 @@ public class RequestHandler {
 		
 		return delegateMap.get(uriString.toString());
 	}
-	 */
+	
 
 }
