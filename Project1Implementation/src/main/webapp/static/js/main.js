@@ -1,4 +1,4 @@
-let baseUrl = '/CatApp2';
+let baseUrl = '/TRMS';
 let nav = document.getElementById('navBar');
 let loggedUser = null;
 checkLogin();
