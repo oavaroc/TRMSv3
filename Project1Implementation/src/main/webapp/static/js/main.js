@@ -49,7 +49,7 @@ async function login() {
             document.getElementById('pass').value = '';
             break;
         case 404: // user not found
-            alert('That user does not exist.');
+            alert('TESTING That user does not exist.');
             document.getElementById('user').value = '';
             document.getElementById('pass').value = '';
             break;
