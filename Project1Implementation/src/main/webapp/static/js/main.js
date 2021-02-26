@@ -5,8 +5,8 @@ checkLogin();
 setNav();
 function setNav() {
     nav.innerHTML = `
-            <a href="index.html"><strong>Cat App</strong></a>
-            <a href="viewCats.html">View Cats</a>`;
+            <a href="index.html"><strong>TRMS</strong></a>
+            <a href="viewCats.html">View TRMS</a>`;
     if (!loggedUser) {
         nav.innerHTML += `
             <form>
