@@ -25,10 +25,12 @@ public class FrontController extends DefaultServlet {
 		if (req.getRequestURI().substring(req.getContextPath().length()).startsWith("/static")) {
 			super.doGet(req, resp);
 		} else {
-			if (fcd != null)
+			if (fcd != null) {
 				fcd.process(req, resp);
-			else
+				resp.getWriter().write("inside fcd not null");
+			}else {
 				resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+				resp.getWriter().write("Inside fcd null");}
 		}
 	}
 
