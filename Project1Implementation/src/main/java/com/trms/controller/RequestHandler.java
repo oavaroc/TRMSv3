@@ -24,9 +24,7 @@ public class RequestHandler {
 		delegateMap = new HashMap<String, FrontControllerDelegate>();
 		//this is /employee and /login
 		delegateMap.put("employee", new EmployeeDelegate());
-		delegateMap.put("employee2", new EmployeeDelegate());
-		delegateMap.put("user/login", new LoginDelegate());
-		delegateMap.put("login", new LoginDelegate());
+		delegateMap.put("user", new LoginDelegate());
 	}
 	
 	public FrontControllerDelegate handle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
