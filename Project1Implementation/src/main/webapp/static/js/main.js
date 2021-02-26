@@ -10,16 +10,16 @@ function setNav() {
     if (!loggedUser) {
         nav.innerHTML += `
             <form>
-                <label for="user">Username: </label>
+                <label for="user">User name: </label>
                 <input id="user" name="user" type="text" />
-                <label for="pass"> Password: </label>
+                <label for="pass"> Pass word: </label>
                 <input id="pass" name="pass" type="password" />
                 <button type="button" id="loginBtn">Log In</button>
             </form>
         `;
     } else {
         nav.innerHTML += `
-            <a href="myCats.html">My Cats</a>
+            <a href="myCats.html">More changes!</a>
             <span>
                 <a href="profile.html">${loggedUser.username}&nbsp;</a>
                 <button type="button" id="loginBtn">Log Out</button>
