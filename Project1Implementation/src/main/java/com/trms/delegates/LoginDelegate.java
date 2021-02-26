@@ -25,41 +25,46 @@ public class LoginDelegate implements FrontControllerDelegate{
 	private ObjectMapper om = new ObjectMapper();
 	@Override
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String path = (String) req.getAttribute("path");
-		
-		if (path == null || path.equals("")) {
-			if ("POST".equals(req.getMethod())) {
-				Employee e = (Employee) om.readValue(req.getInputStream(),Employee.class);
-				
-			}
-		}else if (path.contains("login")) {
-			if ("POST".equals(req.getMethod()))
-				logIn(req, resp);
-			else if ("DELETE".equals(req.getMethod()))
-				req.getSession().invalidate();
-			else
-				resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-		} else {
-			//userWithId(req, resp, Integer.valueOf(path));
-		}
-	}
-	private void logIn(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String username = req.getParameter("user");
-		String password = req.getParameter("pass");
-		
-//		Employee p = es.getPersonByUsername(username);
-//		if (p != null) {
-//			if (p.getPassword().equals(password)) {
-//				req.getSession().setAttribute("person", p);
-//				resp.getWriter().write(om.writeValueAsString(p));
-//			} else {
-//				resp.sendError(404, "Incorrect password.");
+//		String path = (String) req.getAttribute("path");
+//		
+//		if (path == null || path.equals("")) {
+//			if ("POST".equals(req.getMethod())) {
+//				Employee e = (Employee) om.readValue(req.getInputStream(),Employee.class);
+//				
 //			}
+//		}else if (path.contains("login")) {
+//			if ("POST".equals(req.getMethod()))
+//				logIn(req, resp);
+//			else if ("DELETE".equals(req.getMethod()))
+//				req.getSession().invalidate();
+//			else
+//				resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 //		} else {
-//			resp.sendError(404, "No user found with that username.");
+//			//userWithId(req, resp, Integer.valueOf(path));
 //		}
-		resp.getWriter().write(om.writeValueAsString(username));
+		Employee e = new Employee();
+		e.setFirstName("string");
+		e.setUsername(req.getParameter("user"));
+		e.setPass(req.getParameter("pass"));
+		resp.getWriter().write(om.writeValueAsString(e));
 	}
+//	private void logIn(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//		String username = req.getParameter("user");
+//		String password = req.getParameter("pass");
+//		
+////		Employee p = es.getPersonByUsername(username);
+////		if (p != null) {
+////			if (p.getPassword().equals(password)) {
+////				req.getSession().setAttribute("person", p);
+////				resp.getWriter().write(om.writeValueAsString(p));
+////			} else {
+////				resp.sendError(404, "Incorrect password.");
+////			}
+////		} else {
+////			resp.sendError(404, "No user found with that username.");
+////		}
+//		resp.getWriter().write(om.writeValueAsString(username));
+//	}
 //	private void userWithId(HttpServletRequest req, HttpServletResponse resp, Integer id) throws IOException {
 //		switch (req.getMethod()) {
 //			case "GET":
