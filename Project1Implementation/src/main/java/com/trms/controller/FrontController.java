@@ -7,26 +7,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.servlets.DefaultServlet;
+
 import com.trms.delegates.FrontControllerDelegate;
 
 //import com.revature.controller.RequestHandler;
 //import com.revature.delegates.FrontControllerDelegate;
 
-public class FrontController extends HttpServlet {
+public class FrontController extends DefaultServlet {
 	private RequestHandler rh = new RequestHandler();
-	
+
 	// this method is where we will funnel all of our requests
 	// so that we can give them to the handler to get back the
 	// appropriate delegate, then call that delegate
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		FrontControllerDelegate fcd = rh.handle(req, resp);
-		
-		if (fcd != null)
-			fcd.process(req, resp);
-		else
-			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+		if (req.getRequestURI().substring(req.getContextPath().length()).startsWith("/static")) {
+			super.doGet(req, resp);
+		} else {
+			if (fcd != null)
+				fcd.process(req, resp);
+			else
+				resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
