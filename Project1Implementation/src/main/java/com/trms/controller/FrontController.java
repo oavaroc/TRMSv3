@@ -26,10 +26,8 @@ public class FrontController extends DefaultServlet {
 			super.doGet(req, resp);
 		} else {
 			if (fcd != null) {
-				resp.getWriter().write("inside fcd not null");
 				fcd.process(req, resp);
 			}else {
-				resp.getWriter().write("Inside fcd null");
 
 				resp.sendError(HttpServletResponse.SC_NOT_FOUND);}
 		}
