@@ -3,7 +3,7 @@ package com.trms.data;
 import java.util.Set;
 
 public interface GenericDAO<T> {
-	public T add(T t) throws Exception;
+	public T add(T t) ;
 
 	public T getById(Integer id);
 
