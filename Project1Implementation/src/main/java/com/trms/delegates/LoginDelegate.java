@@ -43,7 +43,11 @@ public class LoginDelegate implements FrontControllerDelegate {
 					resp.getWriter().write(om.writeValueAsString(p));
 					resp.setStatus(HttpServletResponse.SC_CREATED);
 				}
-			} else {
+			} else if ("GET".equals(req.getMethod())) {
+				Employee p = (Employee) req.getSession().getAttribute("person");//for staying logged in
+				resp.getWriter().write(om.writeValueAsString(p));
+				resp.setStatus(200);
+			}else {
 				resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			}
 		} else if (path.contains("login")) {
@@ -65,7 +69,7 @@ public class LoginDelegate implements FrontControllerDelegate {
 		Employee p = es.getEmployeeByUsername(username);
 		if (p != null) {
 			if (p.getPass().equals(password)) {
-				req.getSession().setAttribute("person", p);
+				req.getSession().setAttribute("person", p);//for staying logged in
 				resp.getWriter().write(om.writeValueAsString(p));
 			} else {
 				resp.sendError(404, "Incorrect password.");
