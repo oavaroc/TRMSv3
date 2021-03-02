@@ -131,7 +131,6 @@ public class EmployeeServiceTest {
 		Departments d = new Departments();
 		Employee e = new Employee();
 		e.setId(15);
-		d.setDepartmentHead(e);
 		d.setDepartmentName("test");
 		d.setId(0);
 		d = deptDao.add(d);
@@ -166,7 +165,6 @@ public class EmployeeServiceTest {
 		Departments d = new Departments();
 		Employee e = new Employee();
 		e.setId(15);
-		d.setDepartmentHead(e);
 		d.setDepartmentName("test");
 		d.setId(0);
 		d = deptDao.add(d);

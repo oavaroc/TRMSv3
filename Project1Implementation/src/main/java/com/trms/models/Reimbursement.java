@@ -31,7 +31,7 @@ attatchements bytea
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne//(fetch=FetchType.LAZY)
 	@JoinColumn(name="employee_id")
 	private Employee employeeId;
 	@Column(name="date_time")

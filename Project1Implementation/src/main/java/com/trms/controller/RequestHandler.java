@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.trms.delegates.EmployeeDelegate;
 import com.trms.delegates.FrontControllerDelegate;
 import com.trms.delegates.LoginDelegate;
+import com.trms.delegates.MessageDelegate;
+import com.trms.delegates.ReimbursementDelegate;
 
 //import com.revature.delegates.CatDelegate;
 //import com.revature.delegates.EmployeeDelegate;
@@ -25,6 +27,8 @@ public class RequestHandler {
 		//this is /employee and /login
 		delegateMap.put("employee", new EmployeeDelegate());
 		delegateMap.put("user", new LoginDelegate());
+		delegateMap.put("message", new MessageDelegate());
+		delegateMap.put("reimburse", new ReimbursementDelegate());
 	}
 	
 	public FrontControllerDelegate handle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

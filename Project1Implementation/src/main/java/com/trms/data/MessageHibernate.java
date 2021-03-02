@@ -36,6 +36,7 @@ public class MessageHibernate implements MessageDAO{
 		Session s = hu.getSession();
 		Message e = s.get(Message.class, id);
 		s.close();
+		System.out.println(e);
 		return e;
 	}
 

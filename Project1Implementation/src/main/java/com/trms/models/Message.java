@@ -22,10 +22,10 @@ m_content varchar
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne//(fetch=FetchType.LAZY)
 	@JoinColumn(name="m_from")
 	private Employee from;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne//(fetch=FetchType.LAZY)
 	@JoinColumn(name="m_to")
 	private Employee to;
 	@Column(name="m_content")

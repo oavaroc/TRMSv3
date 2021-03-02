@@ -35,12 +35,13 @@ department integer references departments(id)
 	private String pass;
 	@Column(name="reimbursement_claimed")
 	private Float reimbursementClaimed;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne//(fetch=FetchType.LAZY)
 	@JoinColumn(name="direct_supervisor")
 	private Employee directSupervisor;
-	@ManyToOne
+	@ManyToOne//(fetch=FetchType.LAZY)
 	@JoinColumn(name="department")
 	private Departments department;
+	private boolean head;
 	public Employee() {
 		this.id = 0;
 		this.firstName = "";
@@ -50,12 +51,13 @@ department integer references departments(id)
 		this.reimbursementClaimed = 0f;
 		this.directSupervisor = null;
 		this.department = null;
+		this.head = false;
 	}
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", pass=" + pass + ", reimbursementClaimed=" + reimbursementClaimed + ", directSupervisor="
-				+ directSupervisor.getId() + ", department=" + department + "]";
+				+ directSupervisor + ", department=" + department + ", head=" + head + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -64,6 +66,7 @@ department integer references departments(id)
 		result = prime * result + ((department == null) ? 0 : department.getId().hashCode());
 		result = prime * result + ((directSupervisor == null) ? 0 : directSupervisor.getId().hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + (head ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((pass == null) ? 0 : pass.hashCode());
@@ -88,12 +91,14 @@ department integer references departments(id)
 		if (directSupervisor == null) {
 			if (other.directSupervisor != null)
 				return false;
-		} else if (!directSupervisor.getId().equals(other.directSupervisor.getId()))
+		} else if (!directSupervisor.equals(other.directSupervisor))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (head != other.head)
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -169,5 +174,11 @@ department integer references departments(id)
 	}
 	public void setDepartment(Departments department) {
 		this.department = department;
+	}
+	public boolean isHead() {
+		return head;
+	}
+	public void setHead(boolean head) {
+		this.head = head;
 	}
 }
