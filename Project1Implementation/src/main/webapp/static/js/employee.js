@@ -25,17 +25,17 @@ function populateEmpReim(reimbursements, reimbursementSection) {
 
         table.innerHTML = `
         <tr>
-            <th>employeeId</th>
-            <th>date</th>
-            <th>location</th>
-            <th>description</th>
-            <th>eventCost</th>
-            <th>format</th>
-            <th>event</th>
+            <th>Employee Username</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Event Cost</th>
+            <th>Grade Format</th>
+            <th>Event Type</th>
             <th>Coverage</th>
-            <th>justification</th>
-            <th>attatchments</th>
-            <th>approval</th>
+            <th>Justification</th>
+            <th>Attatchments</th>
+            <th>Approval Level</th>
         </tr>
     `;
 
@@ -86,10 +86,12 @@ function populateEmpReim(reimbursements, reimbursementSection) {
                             approvalStage = 'Benefits Coordinator Approved';
                             break;
                     }
-
+                    //let d = new Date();
+                    //d.setDate(reimbursement.date);
+                    d=new Date (reimbursement.date).toDateString();//.toISOString();//d.setUTCDate(reimbursement.date);
                     tr.innerHTML = `
-                    <td>${reimbursement.employeeId.id}</td>
-                    <td>${reimbursement.date}</td>
+                    <td>${reimbursement.employeeId.username}</td>
+                    <td>${d}</td>
                     <td>${reimbursement.location}</td>
                     <td>${reimbursement.description}</td>
                     <td>${reimbursement.eventCost}</td>
@@ -117,17 +119,17 @@ function populateSupReim(reimbursements, reimbursementSection) {
 
         table.innerHTML = `
         <tr>
-            <th>employeeId</th>
-            <th>date</th>
-            <th>location</th>
-            <th>description</th>
-            <th>eventCost</th>
-            <th>format</th>
-            <th>event</th>
+            <th>Employee Username</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Event Cost</th>
+            <th>Grade Format</th>
+            <th>Event Type</th>
             <th>Coverage</th>
-            <th>justification</th>
-            <th>attatchments</th>
-            <th>approval</th>
+            <th>Justification</th>
+            <th>Attatchments</th>
+            <th>Approval Level</th>
         </tr>
     `;
 
@@ -178,11 +180,18 @@ function populateSupReim(reimbursements, reimbursementSection) {
                             approvalStage = 'Benefits Coordinator Approved';
                             break;
                     }
-                    let n = Date.now();
-                    if (reimbursement.date - n < 14) {
-                        tr.innerHTML = `<h2>
-                    <td style="color:#FF0000">${reimbursement.employeeId.id}</td>
-                    <td style="color:#FF0000">${reimbursement.date}</td>
+                    let d=new Date (reimbursement.date).toDateString();
+                    let da=new Date (reimbursement.date).getUTCDate();//.toDateString();//.toISOString();//d.setUTCDate(reimbursement.date);
+                    let n=new Date().getUTCDate();
+                    //console.log(d-n);
+                    var Difference_In_Days = da- n; 
+                      console.log(Difference_In_Days);
+                    // To calculate the no. of days between two dates 
+                    //var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+                    if (Difference_In_Days < 14) {
+                        tr.innerHTML = `
+                    <td style="color:#FF0000">${reimbursement.employeeId.username}</td>
+                    <td style="color:#FF0000">${d}</td>
                     <td style="color:#FF0000">${reimbursement.location}</td>
                     <td style="color:#FF0000">${reimbursement.description}</td>
                     <td style="color:#FF0000">${reimbursement.eventCost}</td>
@@ -192,15 +201,15 @@ function populateSupReim(reimbursements, reimbursementSection) {
                     <td style="color:#FF0000">${reimbursement.justification}</td>
                     <td><a href="" id="saveByteArrayA" download>Download</a></td>
                     <td style="color:#FF0000">${approvalStage}</td>
-                    </h2>
+                    
                     <button class="message" id="${reimbursement.id}">Message User</button>
                     <button class="approve" id="${reimbursement.id}">Approve</button>
                     <button class="deny" id="${reimbursement.id}">Deny</button>
                 `;
                     } else {
                         tr.innerHTML = `
-                    <td>${reimbursement.employeeId.id}</td>
-                    <td>${reimbursement.date}</td>
+                        <td>${reimbursement.employeeId.username}</td>
+                    <td>${d}</td>
                     <td>${reimbursement.location}</td>
                     <td>${reimbursement.description}</td>
                     <td>${reimbursement.eventCost}</td>
@@ -231,17 +240,17 @@ function populateHeaReim(reimbursements, reimbursementSection) {
 
         table.innerHTML = `
         <tr>
-            <th>employeeId</th>
-            <th>date</th>
-            <th>location</th>
-            <th>description</th>
-            <th>eventCost</th>
-            <th>format</th>
-            <th>event</th>
+            <th>Employee Username</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Event Cost</th>
+            <th>Grade Format</th>
+            <th>Event Type</th>
             <th>Coverage</th>
-            <th>justification</th>
-            <th>attatchments</th>
-            <th>approval</th>
+            <th>Justification</th>
+            <th>Attatchments</th>
+            <th>Approval Level</th>
         </tr>
     `;
 
@@ -292,11 +301,18 @@ function populateHeaReim(reimbursements, reimbursementSection) {
                             approvalStage = 'Benefits Coordinator Approved';
                             break;
                     }
-                    let n = Date.now();
-                    if (reimbursement.date - n < 14) {
-                        tr.innerHTML = `<h2>
-                    <td style="color:#FF0000">${reimbursement.employeeId.id}</td>
-                    <td style="color:#FF0000">${reimbursement.date}</td>
+                    let d=new Date (reimbursement.date).toDateString();
+                    let da=new Date (reimbursement.date).getUTCDate();//.toDateString();//.toISOString();//d.setUTCDate(reimbursement.date);
+                    let n=new Date().getUTCDate();
+                    //console.log(d-n);
+                    var Difference_In_Days = da- n; 
+                      console.log(Difference_In_Days);
+                    // To calculate the no. of days between two dates 
+                    //var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+                    if (Difference_In_Days < 14) {
+                        tr.innerHTML = `
+                    <td style="color:#FF0000">${reimbursement.employeeId.username}</td>
+                    <td style="color:#FF0000">${d}</td>
                     <td style="color:#FF0000">${reimbursement.location}</td>
                     <td style="color:#FF0000">${reimbursement.description}</td>
                     <td style="color:#FF0000">${reimbursement.eventCost}</td>
@@ -306,7 +322,6 @@ function populateHeaReim(reimbursements, reimbursementSection) {
                     <td style="color:#FF0000">${reimbursement.justification}</td>
                     <td><a href="" id="saveByteArrayA" download>Download</a></td>
                     <td style="color:#FF0000">${approvalStage}</td>
-                    </h2>
                     <button class="message" id="${reimbursement.id}">Message User</button>
                     <button class="approve" id="${reimbursement.id}">Approve</button>
                     <button class="deny" id="${reimbursement.id}">Deny</button>
@@ -315,8 +330,8 @@ function populateHeaReim(reimbursements, reimbursementSection) {
 
                     } else {
                         tr.innerHTML = `
-                    <td>${reimbursement.employeeId.id}</td>
-                    <td>${reimbursement.date}</td>
+                        <td>${reimbursement.employeeId.username}</td>
+                    <td>${d}</td>
                     <td>${reimbursement.location}</td>
                     <td>${reimbursement.description}</td>
                     <td>${reimbursement.eventCost}</td>
@@ -349,17 +364,17 @@ function populateBenReim(reimbursements, reimbursementSection) {
 
         table.innerHTML = `
         <tr>
-            <th>employeeId</th>
-            <th>date</th>
-            <th>location</th>
-            <th>description</th>
-            <th>eventCost</th>
-            <th>format</th>
-            <th>event</th>
+            <th>Employee Username</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Event Cost</th>
+            <th>Grade Format</th>
+            <th>Event Type</th>
             <th>Coverage</th>
-            <th>justification</th>
-            <th>attatchments</th>
-            <th>approval</th>
+            <th>Justification</th>
+            <th>Attatchments</th>
+            <th>Approval Level</th>
         </tr>
     `;
 
@@ -411,11 +426,18 @@ function populateBenReim(reimbursements, reimbursementSection) {
                             approvalStage = 'Benefits Coordinator Approved';
                             break;
                     }
-                    let n = Date.now();
-                    if (reimbursement.date - n < 14) {
-                        tr.innerHTML = `<h2>
-                    <td style="color:#FF0000">${reimbursement.employeeId.id}</td>
-                    <td style="color:#FF0000">${reimbursement.date}</td>
+                    let d=new Date (reimbursement.date).toDateString();
+                    let da=new Date (reimbursement.date).getUTCDate();//.toDateString();//.toISOString();//d.setUTCDate(reimbursement.date);
+                    let n=new Date().getUTCDate();
+                    //console.log(d-n);
+                    var Difference_In_Days = da- n; 
+                      console.log(Difference_In_Days);
+                    // To calculate the no. of days between two dates 
+                    //var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+                    if (Difference_In_Days < 14) {
+                        tr.innerHTML = `
+                    <td style="color:#FF0000">${reimbursement.employeeId.username}</td>
+                    <td style="color:#FF0000">${d}</td>
                     <td style="color:#FF0000">${reimbursement.location}</td>
                     <td style="color:#FF0000">${reimbursement.description}</td>
                     <td style="color:#FF0000">${reimbursement.eventCost}</td>
@@ -425,7 +447,6 @@ function populateBenReim(reimbursements, reimbursementSection) {
                     <td style="color:#FF0000">${reimbursement.justification}</td>
                     <td><a href="" id="saveByteArrayA" download>Download</a></td>
                     <td style="color:#FF0000">${approvalStage}</td>
-                    </h2>
                     <button class="message" id="${reimbursement.id}">Message User</button>
                     <button class="approve" id="${reimbursement.id}">Approve</button>
                     <button class="deny" id="${reimbursement.id}">Deny</button>
@@ -433,9 +454,9 @@ function populateBenReim(reimbursements, reimbursementSection) {
                     <button class="messageSupe" id="${reimbursement.employeeId.directSupervisor.directSupervisor.id}">Message Head</button>
                     `;
                     }else{
-                        tr.innerHTML = `<h2>
-                    <td>${reimbursement.employeeId.id}</td>
-                    <td>${reimbursement.date}</td>
+                        tr.innerHTML = `
+                        <td>${reimbursement.employeeId.username}</td>
+                    <td>${d}</td>
                     <td>${reimbursement.location}</td>
                     <td>${reimbursement.description}</td>
                     <td>${reimbursement.eventCost}</td>
@@ -445,7 +466,6 @@ function populateBenReim(reimbursements, reimbursementSection) {
                     <td>${reimbursement.justification}</td>
                     <td><a href="" id="saveByteArrayA" download>Download</a></td>
                     <td>${approvalStage}</td>
-                    </h2>
                     <button class="message" id="${reimbursement.id}">Message User</button>
                     <button class="approve" id="${reimbursement.id}">Approve</button>
                     <button class="deny" id="${reimbursement.id}">Deny</button>
@@ -470,17 +490,17 @@ function populateBSuReim(reimbursements, reimbursementSection) {
 
         table.innerHTML = `
         <tr>
-            <th>employeeId</th>
-            <th>date</th>
-            <th>location</th>
-            <th>description</th>
-            <th>eventCost</th>
-            <th>format</th>
-            <th>event</th>
+            <th>Employee Username</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Event Cost</th>
+            <th>Grade Format</th>
+            <th>Event Type</th>
             <th>Coverage</th>
-            <th>justification</th>
-            <th>attatchments</th>
-            <th>approval</th>
+            <th>Justification</th>
+            <th>Attatchments</th>
+            <th>Approval Level</th>
         </tr>
     `;
 
@@ -531,11 +551,18 @@ function populateBSuReim(reimbursements, reimbursementSection) {
                             approvalStage = 'Benefits Coordinator Approved';
                             break;
                     }
-                    let n = Date.now();
-                    if (reimbursement.date - n < 14) {
-                        tr.innerHTML = `<h2>
-                    <td style="color:#FF0000">${reimbursement.employeeId.id}</td>
-                    <td style="color:#FF0000">${reimbursement.date}</td>
+                    let d=new Date (reimbursement.date).toDateString();
+                    let da=new Date (reimbursement.date).getUTCDate();//.toDateString();//.toISOString();//d.setUTCDate(reimbursement.date);
+                    let n=new Date().getUTCDate();
+                    //console.log(d-n);
+                    var Difference_In_Days = da- n; 
+                      console.log(Difference_In_Days);
+                    // To calculate the no. of days between two dates 
+                    //var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+                    if (Difference_In_Days < 14) {
+                        tr.innerHTML = `
+                    <td style="color:#FF0000">${reimbursement.employeeId.username}</td>
+                    <td style="color:#FF0000">${d}</td>
                     <td style="color:#FF0000">${reimbursement.location}</td>
                     <td style="color:#FF0000">${reimbursement.description}</td>
                     <td style="color:#FF0000">${reimbursement.eventCost}</td>
@@ -544,8 +571,21 @@ function populateBSuReim(reimbursements, reimbursementSection) {
                     <td style="color:#FF0000">${coverage}</td>
                     <td style="color:#FF0000">${reimbursement.justification}</td>
                     <td style="color:#FF0000">${approvalStage}</td>
-                    </h2>
                 `;
+                    }else{
+                        tr.innerHTML = `
+                    <td >${reimbursement.employeeId.username}</td>
+                    <td >${d}</td>
+                    <td >${reimbursement.location}</td>
+                    <td >${reimbursement.description}</td>
+                    <td >${reimbursement.eventCost}</td>
+                    <td >${reimbursement.format.format}</td>
+                    <td >${reimbursement.event.format}</td>
+                    <td >${coverage}</td>
+                    <td >${reimbursement.justification}</td>
+                    <td >${approvalStage}</td>
+                `;
+
                     }
                     table.appendChild(tr);
                 }
@@ -1138,7 +1178,7 @@ function populateMessages() {
 
             table.innerHTML = `
                 <tr>
-                    <th>MessageID</th>
+                    <th>Message ID</th>
                     <th>From</th>
                     <th>To</th>
                     <th>Content</th>
