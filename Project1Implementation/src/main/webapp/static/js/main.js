@@ -5,8 +5,7 @@ checkLogin();
 setNav();
 function setNav() {
     nav.innerHTML = `
-            <a href="index.html"><strong>TRMS</strong></a>
-            <a href="viewCats.html">View TRMS</a>`;
+            <a href="index.html"><strong>Home</strong></a>`;
     if (!loggedUser) {
         nav.innerHTML += `
             <form>
@@ -19,19 +18,29 @@ function setNav() {
         `;
     } else {
         nav.innerHTML += `
-            <a href="myCats.html">More changes!</a>
             <span>
+            <button type ="button" id="createReimb">File Reimbursement</button>&nbsp;
+
+            <button type ="button" id="viewMyReimb">View My Reimbursements</button>&nbsp;
+
+            <button type ="button" id="viewMessages">Messages</button>&nbsp;
                 <a href="profile.html">${loggedUser.username}&nbsp;</a>
                 <button type="button" id="loginBtn">Log Out</button>
             </span>
         `;
     }
+            let createReimb = document.getElementById('createReimb');
+            if (loggedUser) createReimb.onclick = createReimburse;
+            let viewMyReimb = document.getElementById('viewMyReimb');
+            if (loggedUser) viewMyReimb.onclick = fetchReimbursements;
+            let viewMessages = document.getElementById('viewMessages');
+            if (loggedUser) viewMessages.onclick = fetchMessages;
 
     let loginBtn = document.getElementById('loginBtn');
     if (loggedUser) loginBtn.onclick = logout;
     else loginBtn.onclick = login;
 }
-
+//POST http://localhost:8080/TRMS/user/login?user=user&pass=pass
 async function login() {
     // http://localhost:8080/users?user=sierra&pass=pass
     let url = baseUrl + '/user/login?';
@@ -58,13 +67,38 @@ async function login() {
             break;
     }
 }
-
+//GET http://localhost:8080/TRMS/reimburse
+let allReimbursements=null;
+async function fetchReimbursements() {
+    // http://localhost:8080/users?user=sierra&pass=pass
+    let url = baseUrl + '/reimburse';
+    let response = await fetch(url, {method: 'GET'});
+    
+    switch (response.status) {
+        case 200: // successful
+            allReimbursements = await response.json();
+            setNav();
+            populateReimbursements();
+            break;
+        case 400: // incorrect password
+            alert('REPLACE WITH 400 MESSAGE');
+            break;
+        case 404: // user not found
+            alert('REPLACE WITH 404 MESSAGE');
+            break;
+        default: // other error
+            alert('Something went wrong.');
+            break;
+    }
+}
 async function logout() {
-    let url = baseUrl + '/user';
+    let url = baseUrl + '/user/login';
     let response = await fetch(url, {method:'DELETE'});
 
-    if (response.status != 200) alert('Something went wrong.');
+    if (response.status != 200){} //alert('Something went wrong.');
     loggedUser = null;
+    let reimbursementSection = document.getElementById('reimbursementSection');
+    reimbursementSection.innerHTML = ``;
     setNav();
 }
 

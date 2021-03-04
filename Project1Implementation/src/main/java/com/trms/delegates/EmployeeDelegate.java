@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trms.models.Employee;
+import com.trms.models.Message;
 import com.trms.services.EmployeeService;
 import com.trms.services.EmployeeServiceImpl;
 
@@ -60,39 +61,20 @@ public class EmployeeDelegate implements FrontControllerDelegate {
 				resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			}
 		} else {
-			int catId = Integer.valueOf(path);
+			int messId = Integer.valueOf(path);
 			Employee c = null;
-			c=new Employee();
-			resp.getWriter().write(om.writeValueAsString(c));
-//			switch (req.getMethod()) {
-//				case "GET":
-//					//c = cs.getCatById(catId);
-//					if (c != null) 
-//						resp.getWriter().write(om.writeValueAsString(c));
-//					else
-//						resp.sendError(404, "Cat not found.");
-//					break;
-//				case "PUT":
-//					if (isEmployee((Person) req.getSession().getAttribute("person"))) {
-//						c = om.readValue(req.getInputStream(), Cat.class);
-//						cs.updateCat(c);
-//						resp.getWriter().write(om.writeValueAsString(c));
-//					} else {
-//						resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-//					}
-//					break;
-//				case "DELETE":
-//					if (isEmployee((Person) req.getSession().getAttribute("person"))) {
-//						c = om.readValue(req.getInputStream(), Cat.class);
-//						cs.removeCat(c);
-//					} else {
-//						resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-//					}
-//					break;
-//				default:
-//					resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-//					break;
-//			}			
+			switch (req.getMethod()) {
+				case "GET":
+					c = cs.getEmployeeById(messId);
+					if (c != null) 
+						resp.getWriter().write(om.writeValueAsString(c));
+					else
+						resp.sendError(404, "Employee not found.");
+					break;
+				default:
+					resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+					break;
+			}			
 		}
 	}
 	

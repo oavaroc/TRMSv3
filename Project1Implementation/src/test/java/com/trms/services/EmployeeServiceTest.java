@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Random;
 
@@ -377,6 +381,23 @@ public class EmployeeServiceTest {
 		assertNotNull(reimDao.getById(1));
 	}
 
+	// READ
+	@Test
+	public void checkGetReimbursementByIdImage() {
+		// Reimbursement Integer id
+		Reimbursement r = reimDao.getById(56);
+		byte[] b = r.getAttatchments();
+		try {
+			String fileName = "NewFileDownload";
+			FileOutputStream fos = new FileOutputStream(new File(fileName));
+			fos.write(b);
+			fos.close();
+			System.out.println("saved at: "+fileName);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	// UPDATE
 	@Test
 	public void checkUpdateReimbursement() {

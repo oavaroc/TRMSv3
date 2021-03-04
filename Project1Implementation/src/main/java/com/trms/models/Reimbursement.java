@@ -49,7 +49,7 @@ attatchements bytea
 	private EventType event;
 	private String justification;
 	@Column(name="attatchements")
-	private File attatchments;
+	private byte[] attatchments;
 	private Integer approval;
 	public Reimbursement() {
 		this.id = 0;
@@ -208,10 +208,10 @@ attatchements bytea
 	public void setJustification(String justification) {
 		this.justification = justification;
 	}
-	public File getAttatchments() {
+	public byte[] getAttatchments() {
 		return attatchments;
 	}
-	public void setAttatchments(File attatchments) {
+	public void setAttatchments(byte[] attatchments) {
 		this.attatchments = attatchments;
 	}
 	public Integer getApproval() {
