@@ -31,10 +31,10 @@ To-do list:
 
 
 ## Usage
-> Login with username: user and password: pass
-> View the reimbursements
-> Click Create Reimbursement
-> Fill out the form
+> * Login with username: user and password: pass
+> * View the reimbursements
+> * Click Create Reimbursement
+> * Fill out the form
 
 ## License
 This project uses the following license: Unlicensed.
