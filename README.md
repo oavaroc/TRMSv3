@@ -25,9 +25,9 @@ To-do list:
 
 ## Getting Started
 
-> git clone https://github.com/oavaroc/TRMSv3.git
-> import the project as a maven project in eclipse
-> run the project on a tomcat9 server
+> * git clone https://github.com/oavaroc/TRMSv3.git
+> * import the project as a maven project in eclipse
+> * run the project on a tomcat9 server
 
 
 ## Usage
